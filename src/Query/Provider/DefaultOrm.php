@@ -98,6 +98,17 @@ class DefaultOrm implements ObjectManagerAwareInterface, QueryProviderInterface,
             );
         }
 
+        if (isset($request[$this->getGroupByKey()])) {
+            $metadata = $this->getObjectManager()->getMetadataFactory()->getAllMetaData();
+            $groupByManager = $this->getServiceLocator()->getServiceLocator()
+                ->get('ZfDoctrineQueryBuilderGroupByManagerOrm');
+            $groupByManager->groupBy(
+                $queryBuilder,
+                $metadata[0],
+                $request[$this->getGroupByKey()]
+            );
+        }
+
         if (isset($request[$this->getOrderByKey()])) {
             $metadata = $this->getObjectManager()->getMetadataFactory()
                 ->getAllMetadata();
@@ -157,6 +168,22 @@ class DefaultOrm implements ObjectManagerAwareInterface, QueryProviderInterface,
         }
 
         return $filterKey;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getGroupByKey()
+    {
+        $config = $this->getServiceLocator()->getServiceLocator()->get('Config');
+
+        if (isset($config['zf-doctrine-querybuilder-options']['group_by_key'])) {
+            $groupByKey = $config['zf-doctrine-querybuilder-options']['group_by_key'];
+        } else {
+            $groupByKey = 'group-by';
+        }
+
+        return $groupByKey;
     }
 
     /**

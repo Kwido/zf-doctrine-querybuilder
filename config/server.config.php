@@ -7,10 +7,11 @@
 return array(
     'service_manager' => array(
         'factories' => array(
-            'ZfDoctrineQueryBuilderFilterManagerOrm' => 'ZF\Doctrine\QueryBuilder\Filter\Service\ORMFilterManagerFactory',
-            'ZfDoctrineQueryBuilderFilterManagerOdm' => 'ZF\Doctrine\QueryBuilder\Filter\Service\ODMFilterManagerFactory',
+            'ZfDoctrineQueryBuilderFilterManagerOrm'  => 'ZF\Doctrine\QueryBuilder\Filter\Service\ORMFilterManagerFactory',
+            'ZfDoctrineQueryBuilderFilterManagerOdm'  => 'ZF\Doctrine\QueryBuilder\Filter\Service\ODMFilterManagerFactory',
             'ZfDoctrineQueryBuilderOrderByManagerOrm' => 'ZF\Doctrine\QueryBuilder\OrderBy\Service\ORMOrderByManagerFactory',
             'ZfDoctrineQueryBuilderOrderByManagerOdm' => 'ZF\Doctrine\QueryBuilder\OrderBy\Service\ODMOrderByManagerFactory',
+            'ZfDoctrineQueryBuilderGroupByManagerOrm' => 'ZF\Doctrine\QueryBuilder\OrderBy\Service\ORMGroupByManagerFactory',
         ),
     ),
 );
